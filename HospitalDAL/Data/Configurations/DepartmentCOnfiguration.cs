@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Data.Configurations
 {
-    internal class DepartmentCOnfiguration : IEntityTypeConfiguration<Department>
+    internal class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {

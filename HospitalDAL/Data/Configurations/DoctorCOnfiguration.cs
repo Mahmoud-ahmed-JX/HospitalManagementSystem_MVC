@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Data.Configurations
 {
-    internal class DoctorCOnfiguration : IEntityTypeConfiguration<Doctor>
+    internal class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Doctor> builder)
         {
