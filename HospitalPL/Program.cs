@@ -1,3 +1,6 @@
+using HospitalDAL.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace HospitalPL
 {
     public class Program
@@ -8,6 +11,11 @@ namespace HospitalPL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //Add Application Db COntext
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+             
 
             var app = builder.Build();
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Entities
 {
-    internal class Department
+    public class Department
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

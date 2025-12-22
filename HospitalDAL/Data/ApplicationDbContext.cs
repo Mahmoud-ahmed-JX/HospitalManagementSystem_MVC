@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace HospitalDAL.Data
 {
 
-    internal class ApplicationDbContext:DbContext
+    public class ApplicationDbContext:DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -23,6 +23,11 @@ namespace HospitalDAL.Data
         public DbSet<Entities.ApplicationUser> ApplicationUsers { get; set; } = null!;
         public DbSet<Entities.Doctor> Doctors { get; set; } = null!;
         public DbSet<Entities.Department> Departments { get; set; } = null!;
+        public DbSet<Entities.Appointment> Appointments { get; set; } = null!;
+        public DbSet<Entities.Patient> Patients { get; set; } = null!;
+        public DbSet<Entities.MedicalRecord> MedicalRecords { get; set; } = null!;
+
+
 
     }
 }
