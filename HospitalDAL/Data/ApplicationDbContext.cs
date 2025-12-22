@@ -1,5 +1,4 @@
-﻿using HospitalDAL.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +20,13 @@ namespace HospitalDAL.Data
             // Additional configuration can go here
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
-        #region DbSets
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; } = null!;
-        public DbSet<Doctor> Doctors { get; set; } = null!;
-        public DbSet<Department> Departments { get; set; } = null!;
-        public DbSet<Patient> Patients { get; set; } = null!;
-        public DbSet<Appointment> Appointments { get; set; } = null!;
-        public DbSet<MedicalRecord> MedicalRecords { get; set; } = null!; 
-        #endregion
+        public DbSet<Entities.ApplicationUser> ApplicationUsers { get; set; } = null!;
+        public DbSet<Entities.Doctor> Doctors { get; set; } = null!;
+        public DbSet<Entities.Department> Departments { get; set; } = null!;
+        public DbSet<Entities.Appointment> Appointments { get; set; } = null!;
+        public DbSet<Entities.Patient> Patients { get; set; } = null!;
+        public DbSet<Entities.MedicalRecord> MedicalRecords { get; set; } = null!;
+
 
 
     }
