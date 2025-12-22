@@ -30,6 +30,12 @@ namespace HospitalDAL.Data.Configurations
             builder.Property(au => au.CreatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
+            builder.ToTable(tb =>
+            {
+                tb.HasCheckConstraint("EmailValidCheck", "Email like '_%@_%._%'");
+                tb.HasCheckConstraint("PhoneNumberValidCheck", "PhoneNumber like '01%' and PhoneNumber not like '%[^0-9]%'");
+            });
+
         }
     }
 }
