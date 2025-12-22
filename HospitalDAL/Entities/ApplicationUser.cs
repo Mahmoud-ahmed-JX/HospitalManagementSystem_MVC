@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Entities
 {
-    internal class ApplicationUser
+    public class ApplicationUser
     {
         public int Id { get; set; }
         public string Email { get; set; }= string.Empty;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalDAL.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,12 @@ namespace HospitalDAL.Entities
         public int Id { get; set; }
         public int UserId { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public string Gender { get; set; } = default!;
-        public string BloodType { get; set; } = default!;
+        public Gender Gender { get; set; } = default!;
+        public BloodType BloodType { get; set; } = default!;
 
         public string Address { get; set; } = default!;
         // Navigation properties
-        //public User User { get; set; } = default!;
+        public ApplicationUser User { get; set; } = default!;
         public List<Appointment> Appointments { get; set; } = [];
 
 

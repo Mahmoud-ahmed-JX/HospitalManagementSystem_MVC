@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Enums
 {
-    internal enum AppointmentStatus
+    public enum AppointmentStatus
     {
         Pending=1,
         Confirmed,

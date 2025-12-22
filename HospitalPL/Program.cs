@@ -1,3 +1,8 @@
+
+
+using HospitalDAL.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace HospitalPL
 {
     public class Program
@@ -5,10 +10,17 @@ namespace HospitalPL
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            #region DI containers
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            #endregion
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -22,7 +34,7 @@ namespace HospitalPL
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
+           
 
             app.MapStaticAssets();
             app.MapControllerRoute(
