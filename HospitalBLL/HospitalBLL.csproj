@@ -14,4 +14,11 @@
     <ProjectReference Include="..\HospitalDAL\HospitalDAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Services\Classes\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
 </Project>
