@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Enums
 {
-    internal enum BloodType
+    public enum BloodType
     {
         A_Positive=1,
         A_Negative,
