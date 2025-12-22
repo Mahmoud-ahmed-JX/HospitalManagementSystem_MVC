@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace HospitalDAL.Enums
 {
-    internal class Class1
+    internal enum Gender
     {
+        Male=1,
+        Female,
     }
 }
