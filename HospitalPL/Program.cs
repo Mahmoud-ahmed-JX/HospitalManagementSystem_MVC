@@ -1,6 +1,9 @@
-
-
+using HospitalBLL.Helpers;
+using HospitalBLL.Services.Classes;
+using HospitalBLL.Services.Interfaces;
 using HospitalDAL.Data;
+using HospitalDAL.Repositories.Classes;
+using HospitalDAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace HospitalPL
@@ -14,16 +17,21 @@ namespace HospitalPL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            //Add Application Db COntext
+            
+            //Add Application Db Context
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-             
-
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+            //Add Repositories
+            builder.Services.AddScoped<IUnintOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            
+            //Add Services
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
+            
+            //Add AutoMapper
+            builder.Services.AddAutoMapper(x=>x.AddProfile(new MappingProfile()));
+          
 
             #endregion
             var app = builder.Build();

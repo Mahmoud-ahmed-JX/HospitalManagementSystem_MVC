@@ -13,6 +13,7 @@ namespace HospitalDAL.Entities
         public int ExperienceYears { get; set; }
 
         public int UserId { get; set; }
+        public bool IsAvailable { get; set; }
 
         public ApplicationUser User { get; set; } = null!; 
         public int DepartmentId { get; set; }

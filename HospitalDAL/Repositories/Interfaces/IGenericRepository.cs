@@ -8,11 +8,10 @@ namespace HospitalDAL.Repositories.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable<TEntity> GetAll(Func<TEntity, bool> condition = null!);
-        TEntity? GetById(int id);
-        void Add(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
-       
+        Task<IEnumerable<TEntity>> GetAllAsync(Func<TEntity, bool>? condition = null);
+        Task<TEntity?> GetByIdAsync(int id);
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
     }
 }
