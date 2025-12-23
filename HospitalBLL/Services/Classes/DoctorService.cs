@@ -13,7 +13,7 @@ namespace HospitalBLL.Services.Classes
     public class DoctorService(IUnintOfWork _unintOfWork,IDoctorRepository _doctorRepository,IMapper mapper) : IDoctorService
     {
        
-        public async Task CreateDoctorAsync(DoctorDto doctorDto)
+        public async Task CreateDoctorAsync(DoctorCreateDto doctorDto)
         {
             var doctor=mapper.Map<Doctor>(doctorDto);
            await _unintOfWork.GetRepository<Doctor>().AddAsync(doctor);
@@ -60,7 +60,7 @@ namespace HospitalBLL.Services.Classes
             return mapper.Map<DoctorDto>(doctor);
         }
 
-        public async Task UpdateDoctorAsync(DoctorDto doctorDto)
+        public async Task UpdateDoctorAsync(DoctorUpdateDto doctorDto)
         {
             var doctor = mapper.Map<Doctor>(doctorDto);
             await _unintOfWork.GetRepository<Doctor>().UpdateAsync(doctor);

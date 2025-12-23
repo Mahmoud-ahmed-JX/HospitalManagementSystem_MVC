@@ -15,8 +15,14 @@ namespace HospitalBLL.Helpers
         {
             // Doctor mappings
             CreateMap<Doctor, DoctorDto>().ReverseMap();
+            CreateMap<DoctorCreateDto, Doctor>();
+            CreateMap<DoctorUpdateDto, Doctor>();
             // Department mappings
             CreateMap<Department, DepartmentDto>().ReverseMap();
+            CreateMap<Department, DepartmentWithDoctorsDto>()
+                .ForMember(dest => dest.Doctors, opt => opt.MapFrom(src => src.Doctors))
+                .ReverseMap();
+
         }
     }
 }

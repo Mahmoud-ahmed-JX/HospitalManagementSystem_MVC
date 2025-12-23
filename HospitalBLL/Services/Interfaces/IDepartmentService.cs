@@ -12,5 +12,11 @@ namespace HospitalBLL.Services.Interfaces
         Task<IEnumerable<DepartmentDto>> GetDepartmentsByNameAsync(string partialName);
         Task<DepartmentWithDoctorsDto?> GetDepartmentWithDoctorsAsync(int departmentId);
 
+        Task<IEnumerable<DepartmentDto>> GetAllDepartmentsAsync();
+        Task<DepartmentDto?> GetDepartmentByIdAsync(int departmentId);
+        Task DeleteDepartment(int departmentId);
+        Task CreateDepartment(DepartmentDto departmentDto);
+        Task UpdateDepartment(DepartmentDto departmentDto);
+
     }
 }

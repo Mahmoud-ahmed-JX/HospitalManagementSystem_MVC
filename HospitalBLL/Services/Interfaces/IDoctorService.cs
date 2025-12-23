@@ -13,8 +13,8 @@ namespace HospitalBLL.Services.Interfaces
         Task<IEnumerable<DoctorDto>> GetBySpecializationAsync(string specialization);
         Task<IEnumerable<DoctorDto>> GetAllDoctorsAsync();
         Task<DoctorDto?> GetDoctorByIdAsync(int doctorId);
-        Task CreateDoctorAsync(DoctorDto doctorDto);
-        Task UpdateDoctorAsync(DoctorDto doctorDto);
+        Task CreateDoctorAsync(DoctorCreateDto doctorDto);
+        Task UpdateDoctorAsync(DoctorUpdateDto doctorDto);
         Task DeleteDoctorAsync(int doctorId);
     }
 }
