@@ -25,10 +25,14 @@ namespace HospitalPL
             //Add Repositories
             builder.Services.AddScoped<IUnintOfWork, UnitOfWork>();
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-            
+            builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+            builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+
             //Add Services
             builder.Services.AddScoped<IDoctorService, DoctorService>();
-            
+            builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+
             //Add AutoMapper
             builder.Services.AddAutoMapper(x=>x.AddProfile(new MappingProfile()));
           

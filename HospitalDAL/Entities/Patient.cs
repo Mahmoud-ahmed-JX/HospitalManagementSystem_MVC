@@ -12,7 +12,7 @@ namespace HospitalDAL.Entities
         // Id, UserId (FK), DateOfBirth, Gender, BloodType, Address, User (nav), Appointments (nav)
         public int Id { get; set; }
         public int UserId { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public Gender Gender { get; set; } = default!;
         public BloodType BloodType { get; set; } = default!;
 
