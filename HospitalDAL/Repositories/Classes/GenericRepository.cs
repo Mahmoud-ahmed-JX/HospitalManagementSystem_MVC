@@ -1,6 +1,7 @@
 ﻿using HospitalDAL.Data;
 using HospitalDAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace HospitalDAL.Repositories.Classes
 {
@@ -13,31 +14,37 @@ namespace HospitalDAL.Repositories.Classes
             _dbContext = dbContext;
         }
 
-        public void Add(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            _dbContext.Set<TEntity>().Add(entity);
+            await _dbContext.Set<TEntity>().AddAsync(entity);
         }
 
-        public void Delete(TEntity entity)
+        public Task DeleteAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
+            return Task.CompletedTask;
         }
 
-        public IEnumerable<TEntity> GetAll(Func<TEntity, bool> condition = null!)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Func<TEntity, bool>? condition = null)
         {
             if (condition == null)
-                return _dbContext.Set<TEntity>().AsNoTracking().ToList();
+                return await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
             else
-                return _dbContext.Set<TEntity>().AsNoTracking().Where(condition).ToList();
-
+            {
+                var allEntities = await _dbContext.Set<TEntity>().AsNoTracking().ToListAsync();
+                return allEntities.Where(condition);
+            }
         }
 
-        public TEntity? GetById(int id) => _dbContext.Set<TEntity>().Find(id);
-
-
-        public void Update(TEntity entity)
+        public async Task<TEntity?> GetByIdAsync(int id)
         {
-           _dbContext.Set<TEntity>().Update(entity);
+            return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
+
+        public Task UpdateAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
+            return Task.CompletedTask;
         }
     }
 }
