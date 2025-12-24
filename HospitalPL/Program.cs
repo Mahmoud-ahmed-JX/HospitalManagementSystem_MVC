@@ -39,7 +39,9 @@ namespace HospitalPL
 
             //Add AutoMapper
             builder.Services.AddAutoMapper(x=>x.AddProfile(new MappingProfile()));
-          
+
+            //Add Service Manager
+            builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
             #endregion
             var app = builder.Build();
