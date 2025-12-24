@@ -32,8 +32,7 @@ namespace HospitalDAL.Repositories.Classes
                 .Include(mr => mr.Appointment)
                 .Where(mr => mr.Appointment.PatientId == patientId)
                 .AsNoTracking()
-                .ToListAsync()
-                .ContinueWith(t => (IEnumerable<MedicalRecord>)t.Result);
+                .ToListAsync();
         }
     }
 }

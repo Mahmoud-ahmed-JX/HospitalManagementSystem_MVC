@@ -9,8 +9,9 @@ namespace HospitalBLL.DTOs.DoctorDtos
 {
     public class DoctorUpdateDto
     {
+        public int Id { get; set; }  // ADD THIS - required to identify which doctor to update
         [Required, MaxLength(100)]
-        public string Specialization { get; set; }= string.Empty;
+        public string Specialization { get; set; } = string.Empty;
         [Range(0, 50)]
         public int ExperienceYears { get; set; }
         public int DepartmentId { get; set; }

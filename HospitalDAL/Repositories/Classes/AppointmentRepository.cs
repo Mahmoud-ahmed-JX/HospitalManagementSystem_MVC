@@ -21,7 +21,9 @@ namespace HospitalDAL.Repositories.Classes
         public async Task<IEnumerable<Appointment>> GetAppointmentsByDoctorAsync(int doctorId)
         {
             return await _dbContext.Appointments
+                .Include(a => a.Doctor).ThenInclude(d => d.User)
                 .Where(a => a.DoctorId == doctorId)
+                .AsNoTracking()
                 .ToListAsync();
         }
 

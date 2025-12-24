@@ -23,7 +23,9 @@ namespace HospitalDAL.Data.Configurations
             builder.Property(x => x.Prescription)
                .HasColumnType("varchar")
                .HasMaxLength(100).IsRequired();
-
+            builder.Property(x => x.CreatedAt)
+             .HasDefaultValueSql("GETDATE()")
+             .ValueGeneratedOnAdd(); // ADD THIS
 
         }
     }

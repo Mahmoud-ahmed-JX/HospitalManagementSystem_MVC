@@ -2,6 +2,7 @@
 using HospitalBLL.DTOs.AppointmentDtos;
 using HospitalBLL.Services.Interfaces;
 using HospitalDAL.Entities;
+using HospitalDAL.Enums;
 using HospitalDAL.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,12 @@ namespace HospitalBLL.Services.Classes
 
         public async Task<bool> CancelAppointmentAsync(int id)
         {
-            var appointment =await  _unintOfWork.GetRepository<Appointment>().GetByIdAsync(id);
+            var appointment = await _unintOfWork.GetRepository<Appointment>().GetByIdAsync(id);
+            if (appointment is null) return false;
+            
+            appointment.Status = AppointmentStatus.Cancelled;
+            await _unintOfWork.GetRepository<Appointment>().UpdateAsync(appointment);
+            await _unintOfWork.SaveChangesAsync();
             return true;
         }
 

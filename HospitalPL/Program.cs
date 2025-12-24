@@ -27,11 +27,15 @@ namespace HospitalPL
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
 
             //Add Services
             builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddScoped<IPatientService, PatientService>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IMedicalRecordService, MedicalRecordService>();
 
             //Add AutoMapper
             builder.Services.AddAutoMapper(x=>x.AddProfile(new MappingProfile()));
@@ -49,6 +53,7 @@ namespace HospitalPL
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseRouting();
 
            

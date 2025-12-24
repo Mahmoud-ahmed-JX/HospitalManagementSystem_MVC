@@ -14,8 +14,4 @@
     <ProjectReference Include="..\HospitalDAL\HospitalDAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\NewFolder\" />
-  </ItemGroup>
-
 </Project>

@@ -17,11 +17,11 @@ namespace HospitalDAL.Data.Configurations
             builder.HasOne(app => app.Patient)
                 .WithMany(p => p.Appointments)
                 .HasForeignKey(app => app.PatientId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(app => app.Doctor)
                 .WithMany(d => d.Appointments)
                 .HasForeignKey(app => app.DoctorId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

@@ -1,6 +1,7 @@
 ﻿using HospitalDAL.Data;
 using HospitalDAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace HospitalDAL.Repositories.Classes
@@ -39,6 +40,12 @@ namespace HospitalDAL.Repositories.Classes
         public async Task<TEntity?> GetByIdAsync(int id)
         {
             return await _dbContext.Set<TEntity>().FindAsync(id);
+        }
+
+        public  Task<int> GetCountAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return predicate is not null?_dbContext.Set<TEntity>().CountAsync(predicate)
+                : _dbContext.Set<TEntity>().CountAsync();
         }
 
         public Task UpdateAsync(TEntity entity)

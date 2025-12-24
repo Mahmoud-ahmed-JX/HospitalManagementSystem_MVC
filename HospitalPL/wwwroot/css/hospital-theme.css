@@ -1,0 +1,118 @@
+:root{
+  --hospital-bg: #0b0f12;           /* deep background */
+  --panel-bg: #0f1720;              /* cards/panels */
+  --muted: #9aa6af;                 /* secondary text */
+  --accent: #17bebb;                /* teal accent */
+  --accent-2: #2fd3c6;
+  --danger: #f05454;
+  --card-border: rgba(255,255,255,0.04);
+  --glass: rgba(255,255,255,0.02);
+}
+
+/* Page */
+body.hospital-dark {
+  background: linear-gradient(180deg, var(--hospital-bg) 0%, #081018 100%);
+  color: #e6eef2;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Navbar */
+.hospital-navbar {
+  background: linear-gradient(90deg, rgba(6,20,27,0.95), rgba(14,25,30,0.95));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 2px 8px rgba(2,8,12,0.6);
+}
+
+/* Links */
+a { color: var(--accent); }
+a.nav-link { color: var(--muted); }
+a.nav-link:hover { color: var(--accent-2); }
+
+/* Cards / panels */
+.card, .panel {
+  background: linear-gradient(180deg, var(--panel-bg), rgba(15,23,30,0.9));
+  border: 1px solid var(--card-border);
+  color: #e6eef2;
+  box-shadow: 0 6px 18px rgba(2,8,12,0.6);
+}
+
+.hospital-card {
+  border-left: 4px solid var(--accent);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+  color: #021317;
+  box-shadow: 0 6px 12px rgba(23,190,187,0.12);
+}
+.btn-outline-light {
+  border-color: rgba(255,255,255,0.08);
+  color: var(--muted);
+}
+
+/* Forms */
+.form-control, textarea.form-control {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #e6eef2;
+  height: calc(2.25rem + 6px);
+}
+.form-control:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(23,190,187,0.12);
+  background: rgba(255,255,255,0.02);
+}
+
+/* Tables */
+.table {
+  color: #e6eef2;
+}
+.table thead th {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: var(--muted);
+  font-weight: 600;
+}
+.table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.table .badge {
+  background: rgba(255,255,255,0.03);
+  color: var(--accent-2);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Footer */
+.hospital-footer {
+  background: linear-gradient(0deg, rgba(8,12,16,0.6), rgba(12,16,20,0.6));
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Small utilities */
+.kpi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.kpi .value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-2);
+}
+.kpi .label {
+  color: var(--muted);
+  font-size: 0.9rem;    
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px){
+  .hospital-card { padding: 0.8rem; }
+  .navbar-brand { font-size: 1rem; }
+}

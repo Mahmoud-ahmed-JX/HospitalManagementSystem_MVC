@@ -1,6 +1,7 @@
 ﻿using HospitalBLL.DTOs.AppointmentDtos;
 using HospitalBLL.DTOs.DepartmentDtos;
 using HospitalBLL.DTOs.DoctorDtos;
+using HospitalBLL.DTOs.MedicalRecordDtos;
 using HospitalBLL.DTOs.PatientDtos;
 using HospitalDAL.Entities;
 using System;
@@ -47,6 +48,17 @@ namespace HospitalBLL.Helpers
             CreateMap<AppointmentCreateDto, Appointment>();
             CreateMap<AppointmentUpdateDto, Appointment>();
 
+
+            #endregion
+
+            #region Medical Record
+            CreateMap<MedicalRecord, MedicalRecordDto>()
+               .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.CreatedAt));
+            CreateMap<CreateMedicalRecordDto, MedicalRecord>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore()); // set server-side
+            CreateMap<MedicalRecordUpdateDto, MedicalRecord>()
+                .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
+                .ForMember(dest => dest.AppointmentId, opt => opt.Ignore()); // unless you allow changing
 
             #endregion
 
