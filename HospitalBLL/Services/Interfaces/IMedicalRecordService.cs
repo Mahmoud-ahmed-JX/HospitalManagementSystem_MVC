@@ -9,6 +9,7 @@ namespace HospitalBLL.Services.Interfaces
 {
     public interface IMedicalRecordService
     {
+       
         Task<MedicalRecordDto> CreateMedicalRecordAsync(CreateMedicalRecordDto dto);
         Task<MedicalRecordDto?> GetMedicalRecordByAppointmentIdAsync(int appointmentId);
         Task<IEnumerable<MedicalRecordDto>> GetMedicalRecordsByPatientIdAsync(int patientId);

@@ -24,6 +24,8 @@ namespace HospitalBLL.Services.Classes
             return mapper.Map<MedicalRecordDto>(medicalRecord);
         }
 
+      
+
         public async Task<MedicalRecordDto?> GetMedicalRecordByAppointmentIdAsync(int appointmentId)
         {
 

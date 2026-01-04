@@ -19,10 +19,14 @@ namespace HospitalBLL.DTOs.AppointmentDtos
         [Required(ErrorMessage = "Doctor is required")]
         [Display(Name = "Doctor")]
         public int DoctorId { get; set; } 
+
         [Required(ErrorMessage = "Date is required")]
+        [Display(Name = "Appointment Date")]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
+        [MaxLength(1000)]
+        [Display(Name = "Notes (Optional)")]
         public string? Notes { get; set; } 
     }
 }
