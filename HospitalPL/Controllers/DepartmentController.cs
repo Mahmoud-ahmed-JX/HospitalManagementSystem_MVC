@@ -24,18 +24,34 @@ namespace HospitalPL.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(DepartmentDto dept)
         {
+           
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("DataInValid", "Check Data And Missing Fields");
+                return View(nameof(Create), dept);
+            }
             await _serviceManager.DepartmentService.CreateDepartment(dept);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
 
         }
         #endregion
+
         #region Edit
 
         [HttpGet]
         public async Task<IActionResult> Edit(int Id)
         {
+            if (Id <= 0)
+            {
+                TempData["ErrorMassage"] = "Id of department can not be 0 or negative number";
+                return RedirectToAction("Index");
+            }
             var dept = await _serviceManager.DepartmentService.GetDepartmentByIdAsync(Id);
-            if (dept == null) return NotFound();
+            if (dept is null)
+            {
+                TempData["ErrorMrssage"] = "Department Not Found";
+                return RedirectToAction("Index");
+            }
             return View(dept);
         }
 
@@ -47,6 +63,7 @@ namespace HospitalPL.Controllers
         }
 
         #endregion
+
         #region Details
 
         [HttpGet]
@@ -57,14 +74,32 @@ namespace HospitalPL.Controllers
         }
 
         #endregion
+
         #region Delete
-        [HttpPost]
+
+        [HttpGet]
         public async Task<IActionResult> Delete(int Id)
         {
+            if (Id <= 0)
+            {
+                TempData["ErrorMassage"] = "Id of department can not be 0 or negative number";
+                return RedirectToAction("Index");
+            }
+            var dept = await _serviceManager.DepartmentService.GetDepartmentByIdAsync(Id);
+            if (dept is null)
+            {
+                TempData["ErrorMrssage"] = "Department Not Found";
+                return RedirectToAction("Index");
+            }
+            return View(dept);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed([FromForm]int Id)
+        {
             await _serviceManager.DepartmentService.DeleteDepartment(Id);
-            TempData["ToastMessage"] = "Department deleted successfully!";
             return RedirectToAction("Index");
-        } 
+        }
+
         #endregion
     }
 }

@@ -15,6 +15,7 @@ namespace HospitalBLL.Services.Classes
     public class MedicalRecordService(IUnintOfWork _unintOfWork,IMedicalRecordRepository _medicalRep,IMapper mapper) : IMedicalRecordService
     {
 
+
         public async Task<MedicalRecordDto> CreateMedicalRecordAsync(CreateMedicalRecordDto dto)
         {
             var medicalRecord = mapper.Map<MedicalRecord>(dto);
@@ -24,13 +25,41 @@ namespace HospitalBLL.Services.Classes
             return mapper.Map<MedicalRecordDto>(medicalRecord);
         }
 
-      
+        public async Task DeleteMedicalRecordAsync(int medicalRecordId)
+        {
+            var medicalRecord =await  _unintOfWork.GetRepository<MedicalRecord>().GetByIdAsync(medicalRecordId);
+            if (medicalRecord is  null)
+            {
+                return;
+            }
+            else
+            {
+               await  _unintOfWork.GetRepository<MedicalRecord>().DeleteAsync(medicalRecord);
+               await  _unintOfWork.SaveChangesAsync();
+
+            }
+
+
+        }
+
+        public async Task<IEnumerable<MedicalRecordDto>> GetAllMedicalRecordsAsync()
+        {
+           var medicalRecords=await _unintOfWork.GetRepository<MedicalRecord>().GetAllAsync();
+           return medicalRecords.Select(mr => mapper.Map<MedicalRecordDto>(mr));
+        }
 
         public async Task<MedicalRecordDto?> GetMedicalRecordByAppointmentIdAsync(int appointmentId)
         {
 
             var medicalRecord=await _medicalRep.GetMedicalRecordByAppointmentIdAsync(appointmentId);
             return medicalRecord is null ? null : mapper.Map<MedicalRecordDto>(medicalRecord);
+        }
+
+        public async Task<MedicalRecordDto> GetMedicalRecordByIdAsync(int medicalRecordId)
+        {
+            
+            var medicalRecord=await _unintOfWork.GetRepository<MedicalRecord>().GetByIdAsync(medicalRecordId);
+            return mapper.Map<MedicalRecordDto>(medicalRecord);
         }
 
         public async Task<IEnumerable<MedicalRecordDto>> GetMedicalRecordsByPatientIdAsync(int patientId)

@@ -125,6 +125,34 @@ namespace HospitalPL.Controllers
 
         #endregion
 
+        #region Get Doctor By Department
+       
+        public async Task<IActionResult> GetByDepartment([FromForm] int departmentId)
+        {
+            if (departmentId <= 0)
+            {
+                TempData["ErrorMassage"] = "Id of Department can not be 0 or negative number";
+                return RedirectToAction(nameof(Index));
+            }
+            var doctors = await _doctorService.GetByDepartmentAsync(departmentId);
+            return View("Index", doctors);
+        }
+        #endregion
+
+        #region Get By Specialization
+
+        [HttpPost]
+        public async Task<IActionResult> GetBySpecialization([FromForm] string specialization)
+        {
+            if (string.IsNullOrWhiteSpace(specialization))
+            {
+                TempData["ErrorMassage"] = "Specialization can not be null or empty";
+                return RedirectToAction(nameof(Index));
+            }
+            var doctors = await _doctorService.GetBySpecializationAsync(specialization);
+            return View("Index", doctors);
+        }
+        #endregion
 
     }
 }

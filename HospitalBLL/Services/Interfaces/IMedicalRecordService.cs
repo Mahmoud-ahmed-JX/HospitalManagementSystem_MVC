@@ -9,10 +9,14 @@ namespace HospitalBLL.Services.Interfaces
 {
     public interface IMedicalRecordService
     {
+        Task<IEnumerable<MedicalRecordDto>> GetAllMedicalRecordsAsync();
        
+        Task<MedicalRecordDto> GetMedicalRecordByIdAsync(int medicalRecordId);
         Task<MedicalRecordDto> CreateMedicalRecordAsync(CreateMedicalRecordDto dto);
         Task<MedicalRecordDto?> GetMedicalRecordByAppointmentIdAsync(int appointmentId);
         Task<IEnumerable<MedicalRecordDto>> GetMedicalRecordsByPatientIdAsync(int patientId);
-        Task UpdateMedicalRecordAsync( MedicalRecordUpdateDto dto);
+        Task UpdateMedicalRecordAsync(MedicalRecordUpdateDto dto);
+
+        Task DeleteMedicalRecordAsync(int medicalRecordId);
     }
 }

@@ -87,7 +87,52 @@ namespace HospitalPL.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(appointment);
-        } 
+        }
+        #endregion
+
+        #region Get Appointment by Doctor id 
+
+
+        public async Task<IActionResult> GetAppointmentsByDoctor(int doctorId)
+        {
+            if (doctorId <= 0)
+            {
+                TempData["ErrorMessage"] = "Invalid Doctor Id";
+                return RedirectToAction(nameof(Index));
+            }
+            var appointments = await _appointmentService.GetAppointmentsByDoctorAsync(doctorId);
+            return View(appointments);
+        }
+        #endregion
+
+        #region Get Appointment by Patient id
+
+        public async Task<IActionResult> GetAppointmentsByPatient(int patientId)
+        {
+            if (patientId <= 0)
+            {
+                TempData["ErrorMessage"] = "Invalid Patient Id";
+                return RedirectToAction(nameof(Index));
+            }
+            var appointments = await _appointmentService.GetAppointmentsByPatientAsync(patientId);
+            return View(appointments);
+        }
+
+        #endregion
+
+        #region Get Today Appointments
+
+        public async Task<IActionResult> GetTodayAppointments(int doctorId)
+        {
+            if (doctorId <= 0)
+            {
+                TempData["ErrorMessage"] = "Invalid Doctor Id";
+                return RedirectToAction(nameof(Index));
+            }
+            var appointments = await _appointmentService.GetTodayAppointmentsAsync(doctorId);
+            return View(appointments);
+
+        }
         #endregion
 
 
